@@ -1,0 +1,155 @@
+\documentclass{report}
+\usepackage{setspace} % Setting line spacing
+\usepackage{ulem} % Underline
+\usepackage{caption} % Captioning figures
+\usepackage{subcaption} % Subfigures
+\usepackage{geometry} % Page layout
+\usepackage{multicol} % Columned pages
+\usepackage{array,etoolbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage[toc,page]{appendix}
+\usepackage{titlesec} % Section formatting
+
+\usepackage[backend=biber,style=apa,citestyle=authoryear]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\DeclareFieldFormat{journaltitle}{\textit{#1}}
+\DeclareFieldFormat[article]{volume}{\textit{#1}}
+\DeclareFieldFormat[misc]{title}{\textit{#1}}
+\DeclareFieldFormat[inbook]{booktitle}{\textit{#1}}
+\addbibresource{references.bib}
+
+\titleformat{\section}{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1.75em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsection}{1em}{}
+
+% Page layout (margins, size, line spacing)
+\geometry{letterpaper, left=1in, right=1in, bottom=1in, top=1in}
+\setstretch{2}
+
+% Headers
+\pagestyle{fancy}
+\lhead{ERSC1020 Lab 2 RWC}
+\rhead{Jayden Lefebvre}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1.2cm}
+
+        \textbf{Relative Water Content of Leaves}
+
+        \vspace{2cm}
+
+        Jayden Lefebvre\\
+
+        \vspace{5cm}
+        
+        Trent University\\
+        SAFS 3530H 2025WI\\
+        Dr. Fallon Tanentzap\\
+        \textbf{Word Count:} 1000
+
+        \vfill
+
+        February 11th, 2025
+        
+    \end{center}
+\end{titlepage}
+
+\clearpage
+
+\thispagestyle{plain}
+\tableofcontents
+
+\vfill
+
+% This is a max 250-word summary of your report, including elements of your introduction, method, results, and discussion. Typically, this is a way to communicate the main messages/points of the study to readers and is the section that you should write last.
+
+\textbf{Abstract:} 
+
+\clearpage
+
+\setstretch{1.5}
+
+\section{Introduction}
+
+% This section presents the importance of the research area, what is known about the research area (from which logical gaps in knowledge should emerge), and the study goals and objectives to address the knowledge gaps (adding research hypotheses is a plus). 
+% This section should refer to previously published relevant research to provide context (limited to directly related studies).
+
+\subsection{Background}
+
+% What is Relative Water Content (RWC)?
+% Why is it important?
+
+Relative water content (RWC) is the measurement of crop hydration relative to saturated (aka turgid, hydrated) conditions, and is a standard indicator of plant water usage and drought stress \parencite{drought}. RWC is calculated as follows:
+
+\[ \text{RWC} = \frac{m_\text{fresh} - m_\text{dry}}{m_\text{turgid} - m_\text{dry}} \times 100\% \]
+
+\subsection{Focus}
+
+Leaves are the most sensitive to dehydration, as leaf tissue adapts more quickly to stress. Readings depend on leaf age, site characteristics, soil moisture, angle of leaf, and time of day (diurnal changes). Readings can be faulty due to improper methodology, transportation and processing time, or temperature exposure.
+
+\subsection{Objectives}
+
+The primary objective of this study is to investigate whether leaf chlorophyll content is influenced by leaf relative water content.
+
+\clearpage
+
+\section{Methods}
+
+% This section describes the details of methods used in conducting the study. Someone should be able to use the methods section to repeat the study. 
+% You should describe the methods used to collect the data, including site layout, bird counting, and data analysis.
+% You should also mention the pooling of data from each field session into one data set.
+
+\subsection{Sampling}
+
+% Radish plants have been growing in the greenhouse in large pots with nutrient rich soils and watered regularly, under greenhouse lighting. Drought treatment pots were watered less one week prior to harvest to ensure that plants did not wilt or start to desiccate at the beginning of germination.
+% Please note that more than one plant per pot. This might be something to consider when writing up your report (root/plant competition). Hence please make sure to label all of your samples with pot number – your initials- plant part. This way we will be able to identify all the individual plants that where found in each pot.
+% In order to get a large data set, that contains replicates, each student in the class needs to harvest one drought plant and one control plant during the lab time.
+
+
+
+\subsection{Data Collection}
+
+\begin{enumerate}
+    \item At-pot measurements are recorded, including:
+    \begin{itemize}
+        \item Soil moisture, electroconductivity, temperature;
+        \item Light intensity; and
+        \item Relative humidity and leaf temperature.
+    \end{itemize}
+    \item Plants are harvested and each is labelled with the pot number.
+    \item One complete leaf is sampled and the \textbf{fresh mass} ($m_{\text{fresh}}$) is taken.
+    \item A photo is taken of the sample with its label and a ruler for scale.
+    \item Chlorophyll content readings are taken.
+    \item Leaf samples are packaged inside a hydrated paper towel and, after resting for 24 hours, \textbf{turgid mass} ($m_{\text{turgid}}$) is taken.
+    \item All soil is removed from the root system, and roots and shoots are separated and placed into a drying oven for one week, after which \textbf{dry mass} ($m_{\text{dry}}$) is taken.
+    \item Data from all samples are digitized and compiled into a single spreadsheet for analysis.
+\end{enumerate}
+
+\clearpage
+
+\subsection{Analysis}
+
+\section{Results}
+
+% This section presents the findings of the study that answer your study questions/hypotheses, without interpreting their meaning. You should summarize data in text, table, or graph form – don’t provide all the raw data. Include graphs that succinctly present the data, a verbal description of the findings (as they relate to the research objectives), and any pertinent observations you made during the laboratory. Don’t present the same data in both table and graph form because that is redundant.
+
+\section{Discussion}
+
+% This section discusses the significance of your results. Consider these questions:
+% • Relate your results to the research questions and objectives raised in the Introduction. How did you answer these questions?
+% • Explain what you think the results mean, and what implications or inferences you can make.
+% • Interpret your results in relation of other published results.
+% • Are there any issues with the study design that limit our results, or may have distorted them? If so, how might you improve the design to reduce these?
+% • Discuss the wider relevance of your findings, such as for policy and management issues. You could also suggest future directions for research, and as necessary discuss about any problems or limitations with methods and anomalies in the data.
+% • You might want to model your report on a peer-reviewed scientific article that you enjoyed reading.
+
+\clearpage
+
+% References
+\printbibliography
+
+\end{document}
