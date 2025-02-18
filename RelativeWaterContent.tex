@@ -11,6 +11,8 @@
 \usepackage[table]{xcolor}
 \usepackage[toc,page]{appendix}
 \usepackage{titlesec} % Section formatting
+\usepackage{pgfplots} % Graphs
+\usepackage{csvsimple} % CSV parsing
 
 \usepackage[backend=biber,style=apa,citestyle=authoryear]{biblatex}
 \DeclareLanguageMapping{english}{english-apa}
@@ -29,7 +31,7 @@
 
 % Headers
 \pagestyle{fancy}
-\lhead{ERSC1020 Lab 2 RWC}
+\lhead{SAFS3530 Lab 2 RWC}
 \rhead{Jayden Lefebvre}
 
 \begin{document}
@@ -38,7 +40,7 @@
     \begin{center}
         \vspace*{1.2cm}
 
-        \textbf{Relative Water Content of Leaves}
+        \textbf{Investigation of Metabolic Activity and Relative Water Content of Crop Leaves Using Chlorophyll Content and Leaf-to-Soil Temperature Ratio}
 
         \vspace{2cm}
 
@@ -65,9 +67,16 @@
 
 \vfill
 
+\clearpage
+
+\section*{Abstract}
 % This is a max 250-word summary of your report, including elements of your introduction, method, results, and discussion. Typically, this is a way to communicate the main messages/points of the study to readers and is the section that you should write last.
 
-\textbf{Abstract:} 
+\vfill
+
+\textit{Study begins on next page.}
+
+\vspace{1cm}
 
 \clearpage
 
@@ -87,13 +96,19 @@ Relative water content (RWC) is the measurement of crop hydration relative to sa
 
 \[ \text{RWC} = \frac{m_\text{fresh} - m_\text{dry}}{m_\text{turgid} - m_\text{dry}} \times 100\% \]
 
+Drought stress is a major concern, as it can significantly impact crop yield and food quality. Without sufficient hydration, plants are susceptible to overheating and reduced photosynthetic rate, leading to wilting and eventual crop loss.
+
 \subsection{Focus}
 
-Leaves are the most sensitive to dehydration, as leaf tissue adapts more quickly to stress. Readings depend on leaf age, site characteristics, soil moisture, angle of leaf, and time of day (diurnal changes). Readings can be faulty due to improper methodology, transportation and processing time, or temperature exposure.
+This study focuses on the physiology and metabolic activity of crop leaves across differing levels of drought stress. Leaves are the most sensitive to dehydration, as leaf tissue adapts more quickly to stress. Furthermore, the leaves are the primary site of photosynthetic activity, and are as-such responsible for the majority of a plant's metabolic activity.
 
 \subsection{Objectives}
 
-The primary objective of this study is to investigate whether leaf chlorophyll content is influenced by leaf relative water content.
+The primary objective of this study is to investigate the existence of relationships between leaf relative water content and both leaf chlorophyll content and the ratio between leaf temperature and soil temperature, as these are both good indicators of metabolic activity.
+
+\subsection{Hypotheses \& Predictions}
+
+It is hypothesized that RWC will differ strongly between droughted and well-hydrated plants. It is also predicted that chlorophyll content will be higher in well-hydrated plants, and that the leaf:soil temperature ratio will be higher in well-hydrated plants due to increased metabolic activity.
 
 \clearpage
 
@@ -105,6 +120,8 @@ The primary objective of this study is to investigate whether leaf chlorophyll c
 
 \subsection{Sampling}
 
+A collection of crop plants have been cultivated under greenhouse conditions, with half of the plants receiving droughted treatment and the other half as a control group. Drought treatment pots were watered one week prior to harvest to ensure that plants did not wilt or start to desiccate. Leaves from 4 plants (2 drought, 2 hydrated) were harvested by 15 groups of participants, producing 15 samples. Further ambient and soil measurements were also taken using standard means.
+
 % Radish plants have been growing in the greenhouse in large pots with nutrient rich soils and watered regularly, under greenhouse lighting. Drought treatment pots were watered less one week prior to harvest to ensure that plants did not wilt or start to desiccate at the beginning of germination.
 % Please note that more than one plant per pot. This might be something to consider when writing up your report (root/plant competition). Hence please make sure to label all of your samples with pot number – your initials- plant part. This way we will be able to identify all the individual plants that where found in each pot.
 % In order to get a large data set, that contains replicates, each student in the class needs to harvest one drought plant and one control plant during the lab time.
@@ -114,12 +131,7 @@ The primary objective of this study is to investigate whether leaf chlorophyll c
 \subsection{Data Collection}
 
 \begin{enumerate}
-    \item At-pot measurements are recorded, including:
-    \begin{itemize}
-        \item Soil moisture, electroconductivity, temperature;
-        \item Light intensity; and
-        \item Relative humidity and leaf temperature.
-    \end{itemize}
+    \item At-pot measurements are recorded, including: Soil moisture, electroconductivity, temperature; light intensity; and relative humidity and leaf temperature.
     \item Plants are harvested and each is labelled with the pot number.
     \item One complete leaf is sampled and the \textbf{fresh mass} ($m_{\text{fresh}}$) is taken.
     \item A photo is taken of the sample with its label and a ruler for scale.
@@ -129,13 +141,166 @@ The primary objective of this study is to investigate whether leaf chlorophyll c
     \item Data from all samples are digitized and compiled into a single spreadsheet for analysis.
 \end{enumerate}
 
-\clearpage
-
 \subsection{Analysis}
+
+Both chlorophyll content and leaf:soil temperature ratio are plotted against RWC to determine if relationships exist. A linear regression is performed to determine the strength of each relationship.
+
+\clearpage
 
 \section{Results}
 
 % This section presents the findings of the study that answer your study questions/hypotheses, without interpreting their meaning. You should summarize data in text, table, or graph form – don’t provide all the raw data. Include graphs that succinctly present the data, a verbal description of the findings (as they relate to the research objectives), and any pertinent observations you made during the laboratory. Don’t present the same data in both table and graph form because that is redundant.
+
+\subsection{Raw Bulk Data}
+
+\begin{table}[h]
+    \caption{Raw study data. Note: \# indicates pot number, H indicates hydrated, D indicates droughted.}
+    \begin{tabular}{c|c|r|r|r|c|r|r|r|c}
+    \textbf{\#} & \textbf{Trt.} & \textbf{Fresh (g)} & \textbf{Turgid (g)} & \textbf{Dry (g)} & \textbf{RWC} & \textbf{Soil °C} & \textbf{CCI} & \textbf{Leaf °C} & \textbf{L °C / S °C} \\ \hline
+    1            & H             & 0.93               & 1.21                & 0.02             & 76.5\%            & 18.5                     & 38.2         & 19.6                     & 1.06         \\ \hline
+    1            & H             & 3.68               & 4.04                & 0.45             & 90.0\%            & 18.3                     & 32.5         & 19.8                     & 1.08         \\ \hline
+    1            & H             & 5.70               & 7.85                & 1.02             & 68.5\%            & 18.7                     & 22.6         & 18.7                     & 1.00         \\ \hline
+    1            & H             & 4.13               & 4.58                & 0.39             & 89.3\%            & 18.3                     & 2.50         & 18.6                     & 1.02         \\ \hline
+    2            & H             & 4.91               & 5.46                & 0.27             & 89.4\%            & 18.4                     & 16.0         & 19.0                     & 1.03         \\ \hline
+    2            & H             & 5.19               & 5.66                & 0.27             & 91.3\%            & 18.7                     & 14.3         & 18.7                     & 1.00         \\ \hline
+    2            & H             & 5.55               & 6.32                & 0.34             & 87.1\%            & 15.0                     & 16.7         & 19.5                     & 1.00         \\ \hline
+    3            & D             & 1.49               & 1.65                & 0.16             & 89.3\%            & 19.4                     & 18.3         & 20.0                     & 1.03         \\ \hline
+    3            & D             & 1.65               & 1.97                & 0.22             & 81.7\%            & 19.3                     & 14.9         & 17.7                     & 0.92         \\ \hline
+    3            & D             & 3.82               & 4.09                & 0.18             & 93.1\%            & 19.0                     & 16.8         & 21.5                     & 1.13         \\ \hline
+    4            & D             & 12.07              & 13.77               & 1.19             & 86.5\%            & 20.3                     & 14.6         & 21.1                     & 1.04         \\ \hline
+    4            & D             & 11.23              & 11.99               & 1.19             & 93.0\%            & 19.8                     & 11.5         & 20.3                     & 1.03         \\ \hline
+    4            & D             & 9.60               & 10.25               & 0.66             & 93.2\%            & 20.2                     & 6.9          & 21.4                     & 1.06         \\ \hline
+    4            & D             & 9.34               & 10.82               & 1.12             & 84.7\%            & 19.9                     & 30.4         & 20.5                     & 1.03         \\ \hline
+    4            & D             & 7.03               & 7.65                & 0.58             & 91.2\%            & 18.7                     & 29.50        & 20.6                     & 1.10         \\
+    \end{tabular}
+\end{table}
+
+\vfill
+
+\textit{Results continue on next page.}
+
+\vspace{1cm}
+
+\clearpage
+
+\subsection{Chlorophyll Content Index}
+
+
+\pgfplotsset{width=0.9\textwidth,compat=1.9}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={/pgf/number format/1000 sep=},
+            xlabel={Relative Water Content},
+            ylabel={Chlorophyll Content Index},
+            enlargelimits=0.05,
+            xmin=0.6, xmax=1,
+            ymin=0, ymax=45,
+            % ybar interval=0.7,
+            % legend pos=north west,
+            ymajorgrids=true,
+            xmajorgrids=true,
+            grid style=dashed,
+            axis y line*=left,
+            axis x line*=bottom,
+            % legend style={at={(0.5,-0.15)}, anchor=north, legend columns=-1}, % Position the legend below the plot
+            % legend entries={Droughted,{y = -55.476x + 67.236},{ Hydrated},{y = -62.035x + 72.774}}
+        ]
+            \addplot[
+                color=red,
+                only marks,
+                mark=square,
+                mark size=1.5pt
+            ] table[meta=y]{assets/droughted_cci.dat};
+            \addplot[
+                color=red,
+                thick
+            ] coordinates {
+                (0.6, 33.95) (1, 11.76)
+            };
+            \addplot[
+                color=blue,
+                only marks,
+                mark=square,
+                mark size=1.5pt
+            ] table[meta=y]{assets/hydrated_cci.dat};
+            \addplot[
+                color=blue,
+                thick
+            ] coordinates {
+                (0.6, 35.55) (1, 10.74)
+            };
+            \legend{Droughted,{-55.476x + 67.236},{ Hydrated},{-62.035x + 72.774}}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Chlorophyll Content Index (CCI) vs. Relative Water Content (RWC) in\\droughted (Pots \#1 \& \#2) and hydrated (Pots \#3 \& \#4) samples.}
+\end{figure}
+
+Droughted R${}^{2}=0.0819$, Hydrated R${}^{2}=0.1939$
+
+\vfill
+\textit{Results continue on next page.}
+\vspace{1cm}
+
+\clearpage
+
+\subsection{Leaf:Soil Temperature Ratio}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={/pgf/number format/1000 sep=},
+            xlabel={Relative Water Content},
+            ylabel={Leaf:Soil Temperature Ratio},
+            enlargelimits=0.05,
+            xmin=0.6, xmax=1,
+            ymin=0.7, ymax=1.5,
+            % ybar interval=0.7,
+            % legend pos=north west,
+            ymajorgrids=true,
+            xmajorgrids=true,
+            grid style=dashed,
+            axis y line*=left,
+            axis x line*=bottom,
+            % legend style={at={(0.5,-0.15)}, anchor=north, legend columns=-1}, % Position the legend below the plot
+            % legend entries={}
+        ]
+            \addplot[
+                color=red,
+                only marks,
+                mark=square,
+                mark size=1.5pt
+            ] table[meta=y]{assets/droughted_temp.dat};
+            \addplot[
+                color=red,
+                thick
+            ] coordinates {
+                (0.6, 0.720277777778) (1, 1.16472222222)
+            };
+            \addplot[
+                color=blue,
+                only marks,
+                mark=square,
+                mark size=1.5pt
+            ] table[meta=y]{assets/hydrated_temp.dat};
+            \addplot[
+                color=blue,
+                thick
+            ] coordinates {
+                (0.6, 1.01681005956) (1, 1.10390469887)
+            };
+            \legend{Droughted,{1.1111x + 0.0536}, Hydrated,{0.2177x + 0.8862}}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Leaf:Soil Temperature Ratio vs. Relative Water Content (RWC) in\\droughted (Pots \#1 \& \#2) and hydrated (Pots \#3 \& \#4) samples.}
+\end{figure}
+
+Droughted R${}^{2}=0.5815$, Hydrated R${}^{2}=0.0306$
+
+\clearpage
 
 \section{Discussion}
 
@@ -146,6 +311,26 @@ The primary objective of this study is to investigate whether leaf chlorophyll c
 % • Are there any issues with the study design that limit our results, or may have distorted them? If so, how might you improve the design to reduce these?
 % • Discuss the wider relevance of your findings, such as for policy and management issues. You could also suggest future directions for research, and as necessary discuss about any problems or limitations with methods and anomalies in the data.
 % • You might want to model your report on a peer-reviewed scientific article that you enjoyed reading.
+
+\subsection{Relative Water Content}
+
+Drought treatment pots were watered one week prior to harvest to ensure that plants did not wilt or start to desiccate - this may have impacted the variance of RWC between droughted and hydrated samples: there was very little difference in mean RWC between the two groups (Droughted Mean RWC = 89.1\%, Hydrated Mean RWC = 84.6\%).
+
+\subsection{Chlorophyll Content Index}
+
+Chlorophyll content is a good indicator of photosynthetic activity, and as such was expected to be higher in well-hydrated plants. The relationship between RWC and CCI is weak, with R${}^{2}$ values of 0.0819 and 0.1939 for droughted and hydrated samples, respectively. This suggests that RWC has little impact on chlorophyll content, and that other factors may be more influential.
+
+\subsection{Leaf:Soil Temperature Ratio}
+
+More than one plant per pot may have introduced crowding in the canopy, causing leaf:soil temperature to be consistently high and weakening the strength of correlation between RWC and leaf:soil temperature ratio.
+
+% The leaf:soil temperature ratio is a good indicator of metabolic activity, and is expected to be higher in well-hydrated plants. The relationship between RWC and leaf:soil temperature ratio is stronger, with R${}^{2}$ values of 0.5815 and 0.0306 for droughted and hydrated samples, respectively. This suggests that RWC has a significant impact on metabolic activity, and that well-hydrated plants are more metabolically active than droughted plants.
+
+\subsection{Limitations}
+
+Leaf relative water content might influence chlorophyll content more under hydrated conditions, but the relationship remains weak overall
+
+Leaf relative water content significantly influences leaf-to-soil temperature ratio under drought conditions but has little impact when plants are well-hydrated.
 
 \clearpage
 
